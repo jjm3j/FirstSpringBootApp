@@ -40,4 +40,27 @@ public class BooksBlogController {
         model.addAttribute("post",res);
         return "blogDetails";
     }
+
+    @GetMapping("blog/{id}/edit")
+    public String bookBlogEdit(@PathVariable(value = "id") long blogId, Model model) {
+        if (!postRepository.existsById(blogId))
+            return "redirect:/blog";
+        Optional<Post> post = postRepository.findById(blogId);
+        ArrayList<Post> res = new ArrayList<>();
+        post.ifPresent(res::add);
+        model.addAttribute("post",res);
+        return "blogEdit";
+    }
+
+    @PostMapping("/blog/{id}/edit")
+    public String bookBlogEditUpdate(@PathVariable(value = "id") long blogId, @RequestParam String nameBook, @RequestParam String surnameAuthor,
+                               @RequestParam String nameAuthor, @RequestParam String patronymicAuthor, Model model) {
+        Post post = postRepository.findById(blogId).orElseThrow();
+        post.setBookName(nameBook);
+        post.setAuthorSurname(surnameAuthor);
+        post.setAuthorName(nameAuthor);
+        post.setAuthorPatrionacy(patronymicAuthor);
+        postRepository.save(post);
+        return "redirect:/blog";
+    }
 }
