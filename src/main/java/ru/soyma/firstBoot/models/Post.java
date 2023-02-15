@@ -14,13 +14,15 @@ public class Post {
     private String authorName;
     private String authorSurname;
     private String authorPatrionacy;
+    private String description;
 
     public Post() { }
-    public Post(String bookName, String authorName, String authorSurname, String authorPatrionacy) {
+    public Post(String bookName, String authorName, String authorSurname, String authorPatrionacy, String description) {
         this.bookName = bookName;
         this.authorName = authorName;
         this.authorSurname = authorSurname;
         this.authorPatrionacy = authorPatrionacy;
+        this.description = description;
     }
     public Long getId() {
         return id;
@@ -60,5 +62,13 @@ public class Post {
 
     public void setAuthorPatrionacy(String authorPatrionacy) {
         this.authorPatrionacy = authorPatrionacy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

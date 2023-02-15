@@ -9,13 +9,14 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-  <h1>Редактирование данных о книги</h1>
+  <h1>Редактирование данных о книге</h1>
   <form method="post">
     <div th:each="v: ${post}">
       <input type="text" th:value="${v.getBookName()}" name="nameBook" placeholder="Название книги" class="form-control"><br>
       <input type="text" th:value="${v.getAuthorSurname()}" name="surnameAuthor" placeholder="Фамилия автора" class="form-control"><br>
       <input type="text" th:value="${v.getAuthorName()}" name="nameAuthor" placeholder="Имя автора" class="form-control"><br>
       <input type="text" th:value="${v.getAuthorPatrionacy()}" name="patronymicAuthor" placeholder="Отчество автора" class="form-control"><br>
+      <input type="text" th:value="${v.getDescription()}" name="description" placeholder="Описание книги" class="form-control"><br>
     </div>
     <button type="submit" class="btn btn-success">Добавить</button>
   </form>

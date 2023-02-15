@@ -9,7 +9,7 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-  <h1>Книги в библиотеке:</h1>
+  <h1>Книги в библиотеке</h1>
   <div th:each="v: ${posts}" class="alert alert-info mt-2">
     <h3 th:text="${v.getBookName()}"></h3>
     <p th:text="${v.getAuthorSurname()}"></p>

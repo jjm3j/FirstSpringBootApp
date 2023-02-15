@@ -15,8 +15,11 @@
     <p th:text="${v.getAuthorSurname()}"></p>
     <p th:text="${v.getAuthorName()}"></p>
     <p th:text="${v.getAuthorPatrionacy()}"></p>
+    <p th:text="${v.getDescription()}"></p>
     <a th:href="'/blog/' + ${v.getId()} + '/edit'" class="btn btn-warning">Редактировать</a>
-    <a th:href="'/blog/' + ${v.getId()} + '/remove'" class="btn btn-warning">Удалить</a>
+    <form th:action="'/blog/' + ${v.getId()} + '/remove'" method="post">
+      <button class="btn btn-warning" type="submit">Удалить</button>
+    </form>
 
 
   </div>

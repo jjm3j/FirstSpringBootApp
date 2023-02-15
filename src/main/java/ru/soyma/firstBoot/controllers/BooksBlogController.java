@@ -26,8 +26,8 @@ public class BooksBlogController {
     }
     @PostMapping("/blog/add")
     public String bookPostBlogAdd(@RequestParam String nameBook, @RequestParam String surnameAuthor,
-                                  @RequestParam String nameAuthor, @RequestParam String patronymicAuthor, Model model) {
-        Post post = new Post(nameBook, surnameAuthor, nameAuthor, patronymicAuthor);
+                                  @RequestParam String nameAuthor, @RequestParam String patronymicAuthor, @RequestParam String description, Model model) {
+        Post post = new Post(nameBook, surnameAuthor, nameAuthor, patronymicAuthor, description);
         postRepository.save(post);
         return "redirect:/blog";
     }
@@ -54,13 +54,21 @@ public class BooksBlogController {
 
     @PostMapping("/blog/{id}/edit")
     public String bookBlogEditUpdate(@PathVariable(value = "id") long blogId, @RequestParam String nameBook, @RequestParam String surnameAuthor,
-                               @RequestParam String nameAuthor, @RequestParam String patronymicAuthor, Model model) {
+                               @RequestParam String nameAuthor, @RequestParam String patronymicAuthor, @RequestParam String description, Model model) {
         Post post = postRepository.findById(blogId).orElseThrow();
         post.setBookName(nameBook);
         post.setAuthorSurname(surnameAuthor);
         post.setAuthorName(nameAuthor);
         post.setAuthorPatrionacy(patronymicAuthor);
+        post.setDescription(description);
         postRepository.save(post);
+        return "redirect:/blog";
+    }
+
+    @PostMapping("/blog/{id}/remove")
+    public String bookBlogEditRemove(@PathVariable(value = "id") long blogId, Model model) {
+        Post post = postRepository.findById(blogId).orElseThrow();
+        postRepository.delete(post);
         return "redirect:/blog";
     }
 }
